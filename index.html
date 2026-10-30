@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Tecnológica Empresarial | Modernización Flutter Desktop - Ajover Darnel</title>
+  <meta name="description" content="Propuesta de arquitectura y viabilidad técnica y económica para modernizar el aplicativo Power Apps FADM36-1 de Ajover Darnel hacia Flutter Desktop con SharePoint, Power Automate y Spring Boot.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Barra de progreso de lectura -->
+  <div id="reading-progress"></div>
+
+  <!-- Barra de Navegación Superior Fija -->
+  <header class="top-navbar">
+    <div class="brand-wrapper">
+      <button class="btn btn-secondary btn-sm menu-toggle-btn" id="menu-toggle" aria-label="Abrir Menú">☰</button>
+      <span class="brand-badge">AJOVER DARNEL</span>
+      <span class="brand-title">Control de Cambios FADM36-1</span>
+      <span class="brand-sub">| Propuesta de Modernización Tecnológica</span>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn btn-secondary btn-sm" id="presentation-btn" title="Activar Modo Presentación Ejecutiva">
+        🖥️ Modo Presentación
+      </button>
+      <button class="btn btn-primary btn-sm" id="print-doc-btn" title="Exportar o Imprimir en PDF">
+        🖨️ Imprimir / Guardar PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- Botón flotante para salir de presentación -->
+  <button class="btn btn-primary exit-presentation-btn" id="exit-presentation-btn">
+    ✖ Salir de Modo Presentación (Esc)
+  </button>
+
+  <div class="app-layout">
+    <!-- Menú Lateral de Navegación Estructurada -->
+    <aside class="sidebar" id="sidebar">
+      <div class="nav-category">Resumen Ejecutivo</div>
+      <ul class="sidebar-nav">
+        <li><a href="#portada" class="active">📄 Portada Ejecutiva</a></li>
+        <li><a href="#situacion-actual">📌 Situación Actual y Retos</a></li>
+        <li><a href="#auditoria-app">🔍 Auditoría Exhaustiva FADM36-1</a></li>
+      </ul>
+
+      <div class="nav-category">Arquitecturas en Evaluación</div>
+      <ul class="sidebar-nav">
+        <li><a href="#arquitectura-a">⚡ Arq. A: Flutter + SharePoint</a></li>
+        <li><a href="#arquitectura-b">⚙️ Arq. B: Flutter + Spring Boot</a></li>
+        <li><a href="#comparativa-hosting">☁️ Hosting: Render vs. Azure</a></li>
+        <li><a href="#power-automate">🔄 Flujos Power Automate y Mails</a></li>
+      </ul>
+
+      <div class="nav-category">Seguridad y Viabilidad TI</div>
+      <ul class="sidebar-nav">
+        <li><a href="#seguridad-ti">🛡️ Seguridad, Entra ID y Permisos</a></li>
+        <li><a href="#requisitos-entornos">💻 Software y Entornos Requeridos</a></li>
+        <li><a href="#costos-viabilidad">💰 Costos, TCO y Calculadora</a></li>
+        <li><a href="#matriz-comparativa">📊 Matriz Comparativa Técnica</a></li>
+      </ul>
+
+      <div class="nav-category">Decisión y Ejecución</div>
+      <ul class="sidebar-nav">
+        <li><a href="#arquitectura-recomendada">⭐ Arquitectura Recomendada</a></li>
+        <li><a href="#plan-implementacion">🗓️ Plan de Fases (10 Etapas)</a></li>
+        <li><a href="#preparacion-reunion">🤝 Preparación Reunión TI y Jefa</a></li>
+        <li><a href="#preguntas-ti">❓ Banco de Preguntas para TI</a></li>
+        <li><a href="#fuentes-oficiales">📚 Fuentes Técnicas y Auditoría</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+
+      <!-- SECCIÓN 1: PORTADA EJECUTIVA -->
+      <section class="doc-section" id="portada">
+        <div class="section-header">
+          <span class="section-tag">Documento Técnico Institucional</span>
+          <h1 class="section-title">Propuesta de Modernización de Arquitectura Tecnológica</h1>
+          <p class="section-subtitle">Transición del Sistema de Control de Cambios FADM36-1 hacia Aplicación de Escritorio Windows (Flutter) conservando la Infraestructura de Datos en Microsoft 365 y Automatizaciones en Power Automate</p>
+        </div>
+
+        <div class="card-grid-3">
+          <div class="info-card">
+            <div class="card-title">🏢 Entidad y Contexto</div>
+            <p class="card-text"><strong>Ajover Darnel S.A.S.</strong><br>Sistema de Gestión Integral (SGI)<br>Procedimiento FADM36-1 (v1.5)</p>
+          </div>
+          <div class="info-card">
+            <div class="card-title">🎯 Objetivo Estratégico</div>
+            <p class="card-text">Evolucionar la experiencia de usuario y rendimiento mediante Flutter Desktop en Windows, preservando listas de SharePoint y flujos de notificación.</p>
+          </div>
+          <div class="info-card">
+            <div class="card-title">👥 Audiencia de Decisión</div>
+            <p class="card-text">Dirección de Área, Jefatura de Proyecto, Departamento de TI, Administradores de M365 y Seguridad Informática.</p>
+          </div>
+        </div>
+
+        <div class="alert-box alert-info">
+          <strong>Principio Rector de la Propuesta:</strong> No se propone descartar ni destruir la infraestructura existente. La iniciativa busca optimizar la interfaz operativa en puestos de trabajo Windows mientras se mantiene el 100% de la gobernanza, datos en listas SharePoint y flujos automáticos ya testeados.
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: SITUACIÓN ACTUAL Y RETOS -->
+      <section class="doc-section" id="situacion-actual">
+        <div class="section-header">
+          <span class="section-tag">Diagnóstico</span>
+          <h2 class="section-title">Resumen de la Situación Actual y Motivación</h2>
+          <p class="section-subtitle">Por qué evaluar una aplicación nativa de escritorio frente al aplicativo Power Apps existente</p>
+        </div>
+
+        <p class="paragraph">
+          Actualmente, la compañía opera el proceso <strong>FADM36-1 (Versión 1.5)</strong> para administrar el ciclo de vida de los cambios (fases de <em>Planeación</em>, <em>Desarrollo</em> y <em>Finalización</em>). Si bien la solución en Power Apps ha centralizado la información de manera efectiva, la operación diaria en planta y oficinas presenta oportunidades de mejora significativas:
+        </p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="card-icon">⏱️</div>
+            <h3 class="card-title">Tiempos de Carga en Navegador</h3>
+            <p class="card-text">Power Apps web requiere descargar pesados paquetes JavaScript y metadatos de sesión en cada arranque, generando latencias perceptibles en computadores de planta u oficinas con ancho de banda compartido.</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">🧩</div>
+            <h3 class="card-title">Complejidad en Fórmulas Power Fx</h3>
+            <p class="card-text">Los archivos de pantalla (ej. <code>PantallaCreacionSolicitud.yaml</code> y <code>PantallaDetallesPropuestaCambioNUEVA.yaml</code>) superan los 800 KB de fórmulas combinadas en bloques <code>OnSelect</code>, dificultando el mantenimiento y versionamiento en Git.</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">🖥️</div>
+            <h3 class="card-title">Experiencia de Usuario de Escritorio</h3>
+            <p class="card-text">Una aplicación de escritorio Windows nativa (Flutter C++) ofrece renderizado a 60-120 FPS mediante Impeller/Skia, atajos de teclado fluidos, apertura instantánea e integración con el sistema operativo sin depender de pestañas de navegador.</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">🔒</div>
+            <h3 class="card-title">Gobierno de Licenciamiento</h3>
+            <p class="card-text">Evaluar si la operación a mediano plazo requerirá conectores premium o capacidades offline, y cómo estructurar el acceso para no incurrir en sobrecostos inesperados de licencias de Power Platform.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 3: AUDITORÍA TÉCNICA EXHAUSTIVA DE LO EXISTENTE -->
+      <section class="doc-section" id="auditoria-app">
+        <div class="section-header">
+          <span class="section-tag">Fase 1: Auditoría Técnica</span>
+          <h2 class="section-title">Inventario Técnico del Sistema Existente</h2>
+          <p class="section-subtitle">Análisis basado rigurosamente en los archivos YAML, esquemas JSON de Power Automate y documentación del repositorio</p>
+        </div>
+
+        <div class="alert-box alert-success">
+          <span class="status-pill audited">Detectado en la auditoría</span>
+          <strong>Verificación de Fuentes:</strong> Esta sección se fundamenta en la inspección directa de <code>INFORME_TECNICO_CONTROL_DE_CAMBIOS.md</code>, los archivos YAML de pantallas (<em>Home</em>, <em>PantallaCreacionSolicitud</em>, <em>PantallaHistorialSolicitudes</em>, <em>PantallaDetallesPropuestaCambioNUEVA</em>, <em>PantallaInformePDF</em>) y las exportaciones de Power Automate (<code>definition.json</code>).
+        </div>
+
+        <h3 class="content-heading">1. Problema Empresarial que Resuelve</h3>
+        <p class="paragraph">
+          Garantiza el control estricto de propuestas de modificación en plantas de manufactura y áreas administrativas bajo la norma FADM36-1: captura de la iniciativa, análisis de impacto mediante la matriz de riesgos <strong>"Análisis 4 Qué"</strong>, asignación sectorial a 12 áreas técnicas, dictámenes de aprobación y generación de informes oficiales de auditoría ISO / Buenas Prácticas de Manufactura.
+        </p>
+
+        <h3 class="content-heading">2. Perfiles y Usuarios</h3>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+          <li><strong>Proponente Original:</strong> Colaborador que formula la iniciativa técnica. Su identidad queda vinculada inmutablemente a su cuenta de Microsoft 365 para preservar la autoría.</li>
+          <li><strong>Comité Evaluador / Aprobadores Sectoriales:</strong> Representantes de las 12 áreas técnicas (Ambiente, Calidad, SST, Inocuidad, Mantenimiento, Compras, etc.). Acceden en modo lectura al alcance inicial y solo editan su checklist respectivo.</li>
+          <li><strong>Líder del Cambio:</strong> Coordina la transición de la propuesta a través de las etapas: <code>Planeación</code>, <code>Desarrollo</code> y <code>Finalización</code>.</li>
+          <li><strong>Administradores / Auditores:</strong> Cuentan con visibilidad global de todo el historial y descarga de fichas oficiales en PDF.</li>
+        </ul>
+
+        <h3 class="content-heading">3. Inventario de Listas de SharePoint Identificadas</h3>
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Lista de SharePoint</th>
+                <th>GUID / Identificador</th>
+                <th>Función en el Sistema</th>
+                <th>Columnas Principales Auditadas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lista de Procesos Control de Cambios vrs 1.5</strong></td>
+                <td><code>d1776e9f-0c50-45bb-8d11-6c5fc60d417b</code></td>
+                <td>Lista principal (Cabecera de la propuesta de cambio)</td>
+                <td><code>ID</code>, <code>Nombre del Cambio</code>, <code>Fecha Creación Propuesta</code>, <code>Tipo de Cambio</code>, <code>Origen Cambio</code>, <code>Categoría</code>, <code>Proceso</code> (Planta), <code>Proponente(s)</code> (User Multi), <code>Cargo</code>, <code>Personas Asignadas y Responsables</code> (User Multi), <code>Nivel de Riesgo</code> (Numérico), <code>Categoría Nivel de Riesgo</code> (Choice), <code>Areas de Impacto del cambio</code> (Multi-choice), <code>Situación Actual</code>, <code>Descripción del Cambio</code>, <code>Objetivo del cambio</code>, <code>Justificacion del Cambio</code>, <code>Impacto del Cambio</code>, <code>Estado Propuesta del Cambio</code> (Pendiente, etc.), <code>Momento del Cambio</code> (Planeación / Desarrollo / Finalización).</td>
+              </tr>
+              <tr>
+                <td><strong>Definiciones Riesgo | Análisis 4 que | vrs 1.5 (Control de Cambios)</strong></td>
+                <td><code>5de93bd3-7ccf-42ce-a17d-92706c49593d</code> (Lista hija de riesgos)</td>
+                <td>Matriz detallada de riesgos generada por cada área de impacto</td>
+                <td><code>ID Cambio</code> (Lookup a lista principal), <code>Categoría</code>, <code>¿Qué afectaciones pueden generarse al efectuarse el cambio?</code>, <code>¿Qué peligros existen en la ejecución del cambio?</code>, <code>¿Qué consecuencias traería el cambio?</code>, <code>¿Qué controles debemos aplicar?</code>, <code>Probabilidad en Años</code> (Bajo, Medio, Alto).</td>
+              </tr>
+              <tr>
+                <td><strong>Listas Sectoriales de Checklist por Área</strong></td>
+                <td>Calidad: <code>279deea4-...</code><br>Inocuidad: <code>ecfc18dd-...</code></td>
+                <td>Revisiones específicas de dictamen técnico y evidencias por área</td>
+                <td>Campos específicos de verificación legal, matrices de residuos, fichas técnicas SGA, dictamen (Aprobado / Devuelto / Rechazado), observaciones y evidencias adjuntas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="content-heading">4. Auditoría Crítica de Flujos de Power Automate</h3>
+        <p class="paragraph">
+          La inspección de los archivos <code>definition.json</code> en los paquetes exportados reveló un hallazgo fundamental para el diseño de la nueva solución:
+        </p>
+
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Nombre del Flujo en Power Automate</th>
+                <th>Desencadenador Real (Trigger)</th>
+                <th>Conectores Utilizados</th>
+                <th>Acciones que Ejecuta</th>
+                <th>Impacto en Migración a Flutter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Copia de: Enviar Correos Creación de propuesta Cambio | Administración de Cambios</strong></td>
+                <td><code>Request (PowerAppV2)</code><br>Parámetro: <code>number (ID_Cambio)</code></td>
+                <td>SharePoint Online, Office 365 Outlook</td>
+                <td>Obtiene el elemento por ID, itera sobre la colección de proponentes y asignados, y envía correos corporativos en formato HTML (azul institucional).</td>
+                <td><span class="status-pill ti-pending">Requiere Ajuste</span> Al tener trigger <code>PowerAppV2</code>, Flutter no puede invocarlo directamente a menos que se exponga como HTTP Webhook o se migre el trigger a <em>"When an item is created"</em> en SharePoint.</td>
+              </tr>
+              <tr>
+                <td><strong>Copia de: Momento Cerrado - Notificaciones Generales - DatosResumenes</strong></td>
+                <td><code>Request (PowerAppV2)</code><br>Parámetro: <code>number (ID Cambio)</code></td>
+                <td>SharePoint Online, Office 365 Outlook</td>
+                <td>Lee el registro cerrado, concatena nombres en arrays y envía la notificación oficial de cierre total de cambio al líder y a los gerentes.</td>
+                <td><span class="status-pill ti-pending">Requiere Ajuste</span> Igual que el anterior: trigger manual atado al motor de Power Apps.</td>
+              </tr>
+              <tr>
+                <td><strong>AdjuntarArchivos Nivel: PropuestaCambio</strong></td>
+                <td><code>Request (PowerAppV2)</code><br>Parámetros: ID, Nombre, File Bytes</td>
+                <td>SharePoint Online</td>
+                <td>Crea el archivo adjunto en la lista principal mediante <code>CreateAttachment</code>.</td>
+                <td><span class="status-pill recommendation">Prescindible en Flutter</span> Flutter o Spring Boot pueden subir el archivo adjunto directamente vía Microsoft Graph API sin gastar ejecuciones de flujos.</td>
+              </tr>
+              <tr>
+                <td><strong>Copia de: AdjuntarArchivos Items Definicion de Riesgo</strong></td>
+                <td><code>Request (PowerAppV2)</code></td>
+                <td>SharePoint Online</td>
+                <td>Gestiona adjuntos en listas hijas según el área indicada.</td>
+                <td><span class="status-pill recommendation">Prescindible en Flutter</span> Se puede resolver nativamente mediante Graph API.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert-box alert-warning">
+          <strong>Aclaración sobre Gmail y Teams en la Auditoría:</strong> Los flujos auditados en el repositorio utilizan formalmente <code>shared_office365</code> (Outlook) para el envío de correos institucionales dirigidos a cuentas <code>@ajover.com</code>. No se hallaron conectores nativos de Gmail ni tarjetas adaptables de Microsoft Teams activos en los archivos exportados. En caso de requerirse Gmail o Teams para el nuevo sistema, se trata de una <em>nueva integración</em> que debe validarse con las políticas DLP del departamento de TI.
+        </div>
+      </section>
+
+      <!-- SECCIÓN 4: ARQUITECTURA A (FLUTTER DIRECTO A SHAREPOINT) -->
+      <section class="doc-section" id="arquitectura-a">
+        <div class="section-header">
+          <span class="section-tag">Alternativa 1</span>
+          <h2 class="section-title">Arquitectura A: Flutter Desktop + SharePoint + Power Automate</h2>
+          <p class="section-subtitle">Conexión directa desde la aplicación cliente Windows hacia Microsoft Graph API con identidad delegada</p>
+        </div>
+
+        <div class="architecture-diagram-box">
+┌────────────────────────────────────────────────────────────────────────┐
+│                        ARQUITECTURA A: DIRECTA                         │
+└────────────────────────────────────────────────────────────────────────┘
+
+ [ Colaborador en Windows 10/11 ]
+              │
+              ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │            APLICACIÓN FLUTTER DESKTOP (Dart/C++)            │
+ │                                                             │
+ │   • MSAL / Authorization Code Flow con PKCE (Port 4200)     │
+ │   • Token Cache Seguro (Windows Data Protection API - DPAPI)│
+ │   • Cliente HTTP Rest / Microsoft Graph SDK                 │
+ │   • Lógica de Negocio y Reglas FADM36-1 en Dart             │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ Bearer Token (Permisos Delegados)
+                                ▼ HTTPS (TLS 1.3)
+ ┌─────────────────────────────────────────────────────────────┐
+ │             MICROSOFT ENTRA ID (Azure AD)                   │
+ │   • Autenticación Corporativa SSO                           │
+ │   • Políticas de Acceso Condicional + MFA                   │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ Token Validado
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                MICROSOFT GRAPH API (v1.0)                   │
+ │   • Endpoints: /sites/{siteId}/lists/{listId}/items         │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ Operaciones CRUD
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                     SHAREPOINT ONLINE                       │
+ │   • "Lista de Procesos Control de Cambios vrs 1.5"          │
+ │   • "Definiciones Riesgo | Análisis 4 que"                  │
+ │   • Documentos y Adjuntos                                   │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ Trigger: "When an item is created/modified"
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                   POWER AUTOMATE (NUBE)                     │
+ │   • Envío automático de notificaciones por Outlook/Gmail    │
+ │   • Avisos a canales o chats de Microsoft Teams             │
+ └─────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h3 class="content-heading">Mecanismo de Autenticación en Windows (Punto Crítico)</h3>
+        <p class="paragraph">
+          En Flutter Desktop para Windows <strong>no es viable ni seguro utilizar webviews móviles convencionales</strong> ni guardar credenciales/secretos en el código. La solución técnicamente respaldada por Microsoft y compatible con Windows es el flujo <strong>OAuth 2.0 Authorization Code con PKCE (Proof Key for Code Exchange)</strong>:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+          <li><strong>Inicio de Sesión:</strong> La aplicación abre el navegador predeterminado del sistema (ej. Microsoft Edge) contra el endpoint de autorización de Microsoft Entra ID. Esto aprovecha automáticamente las credenciales corporativas (Single Sign-On - SSO), MFA por Microsoft Authenticator y directivas de Acceso Condicional de la empresa.</li>
+          <li><strong>Retorno del Código:</strong> Flutter levanta un listener HTTP local transitorio (ej. <code>http://localhost:4200/auth-callback</code>) o registra un Custom Protocol URI (ej. <code>ajover-cambios://auth</code>) para capturar el código de autorización de forma segura.</li>
+          <li><strong>Protección del Token:</strong> El token de acceso y refresh token se almacenan cifrados en el equipo local utilizando <strong>Windows Data Protection API (DPAPI)</strong> a través del plugin <code>flutter_secure_storage</code>, garantizando que ninguna otra aplicación o usuario sin privilegios pueda leerlos.</li>
+        </ul>
+
+        <h3 class="content-heading">Ejemplos Reales de Endpoints de Microsoft Graph API</h3>
+        <div class="code-title">
+          <span>Consultas y Operaciones REST a Listas de SharePoint</span>
+          <span>GET / POST / PATCH</span>
+        </div>
+        <pre class="code-block">
+// 1. Obtener listado de solicitudes con filtros OData
+GET https://graph.microsoft.com/v1.0/sites/{site-id}/lists/{list-id}/items?expand=fields(select=ID,NombredelCambio,MomentodelCambio,NiveldeRiesgo,Proponente)&amp;$filter=fields/MomentodelCambio eq 'Planeación'
+
+// 2. Crear nueva solicitud de cambio (FADM36-1)
+POST https://graph.microsoft.com/v1.0/sites/{site-id}/lists/{list-id}/items
+Content-Type: application/json
+Authorization: Bearer {Access-Token-Delegado}
+
+{
+  "fields": {
+    "NombredelCambio": "Optimización Línea Extrusión 3",
+    "FechaCreacionPropuesta": "2026-10-29T10:00:00Z",
+    "TipodeCambio": "Operativo",
+    "Categoría": "Infraestructura",
+    "MomentodelCambio": "Planeación",
+    "SituacionActual": "Pérdida de presión en boquilla",
+    "DescripciondelCambio": "Instalación de válvula modulante",
+    "NiveldeRiesgo": 4,
+    "CategoriaNiveldeRiesgo": "Medio Riesgo"
+  }
+}
+
+// 3. Modificar estado o dictamen técnico
+PATCH https://graph.microsoft.com/v1.0/sites/{site-id}/lists/{list-id}/items/{item-id}/fields
+Content-Type: application/json
+
+{
+  "MomentodelCambio": "Desarrollo",
+  "EstadoPropuestadelCambio": "Aprobado"
+}
+        </pre>
+
+        <div class="alert-box alert-warning">
+          <strong>Limitaciones de la Arquitectura A:</strong> Al conectarse directamente desde el cliente, cada equipo cliente realiza múltiples llamadas a Graph API. Si las reglas de negocio o fórmulas de riesgo cambian, se requiere recompilar y redistribuir el binario de Flutter en cada máquina de los empleados.
+        </div>
+      </section>
+
+      <!-- SECCIÓN 5: ARQUITECTURA B (FLUTTER + SPRING BOOT) -->
+      <section class="doc-section" id="arquitectura-b">
+        <div class="section-header">
+          <span class="section-tag">Alternativa 2</span>
+          <h2 class="section-title">Arquitectura B: Flutter Desktop + Backend Spring Boot + SharePoint</h2>
+          <p class="section-subtitle">Capa intermedia empresarial en Java 17 / Spring Boot 3 para centralización de reglas, seguridad y auditoría</p>
+        </div>
+
+        <div class="architecture-diagram-box">
+┌────────────────────────────────────────────────────────────────────────┐
+│                        ARQUITECTURA B: 3 CAPAS                         │
+└────────────────────────────────────────────────────────────────────────┘
+
+ [ Colaborador en Windows ]
+              │
+              ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │            APLICACIÓN FLUTTER DESKTOP (Windows)             │
+ │   • Autenticación Entra ID / Token Bearer JWT Corporativo   │
+ │   • Consumo exclusivo de la API REST de Negocio             │
+ │   • Cero lógica de integración de Graph en el cliente       │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ HTTPS / JWT Token
+                                ▼ (Firewall / TLS 1.3)
+ ┌─────────────────────────────────────────────────────────────┐
+ │              BACKEND SPRING BOOT 3 (Java 17 LTS)            │
+ │   • Spring Security + OAuth2 Resource Server                │
+ │   • Microsoft Graph Java SDK v6                             │
+ │   • Validación Estricta de Negocio y Cálculo Matriz 4 Qué   │
+ │   • Logs Centralizados, Auditoría de Acceso y Rate Limiting │
+ │   • Despliegue en Azure Container Apps o App Service        │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ Graph API / Credenciales Administradas
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                MICROSOFT GRAPH API &amp; SHAREPOINT             │
+ │   • Permisos de Aplicación acotados con Sites.Selected      │
+ │   • Listas de Control de Cambios v1.5                       │
+ └──────────────────────────────┬──────────────────────────────┘
+                                │ Eventos / Webhooks
+                                ▼
+ ┌─────────────────────────────────────────────────────────────┐
+ │                   POWER AUTOMATE &amp; M365                     │
+ │   • Notificaciones a Gmail, Outlook y Microsoft Teams       │
+ └─────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h3 class="content-heading">Responsabilidades y Ventajas de la Capa Backend</h3>
+        <div class="card-grid">
+          <div class="info-card">
+            <h4 class="card-title">1. Centralización de Reglas</h4>
+            <p class="card-text">El algoritmo de cálculo del riesgo (promedio de áreas × factor de consecuencia) reside en Java. Si Calidad o Seguridad Industrial cambian las fórmulas normativas, solo se actualiza el backend sin tocar los computadores de los usuarios.</p>
+          </div>
+          <div class="info-card">
+            <h4 class="card-title">2. Blindaje de Permisos</h4>
+            <p class="card-text">Los usuarios no requieren permisos directos de escritura en las listas de SharePoint. El backend valida el rol de proponente o aprobador y ejecuta la escritura mediante una identidad de servicio controlada.</p>
+          </div>
+          <div class="info-card">
+            <h4 class="card-title">3. Trazabilidad y Auditoría</h4>
+            <p class="card-text">Registro inmutable de quién intentó modificar una solicitud, IP de origen, cambios de estado y control contra operaciones duplicadas (idempotencia).</p>
+          </div>
+          <div class="info-card">
+            <h4 class="card-title">4. Desacoplamiento de Servicios</h4>
+            <p class="card-text">Flutter solo conoce endpoints REST estandarizados (ej. <code>/api/v1/cambios</code>). Si en el futuro SharePoint se complementa o migra, el frontend permanece intacto.</p>
+          </div>
+        </div>
+
+        <h3 class="content-heading">Modelos de Autenticación y Autorización del Backend</h3>
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Modelo de Acceso</th>
+                <th>Mecanismo Técnico</th>
+                <th>Ventajas Principales</th>
+                <th>Riesgos y Aprobación de TI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Modelo 1: Permisos Delegados (On-Behalf-Of - OBO)</strong></td>
+                <td>El backend intercambia el token JWT recibido del usuario de Flutter por un nuevo token de Graph API en nombre de ese colaborador específico.</td>
+                <td>Garantiza que la auditoría en SharePoint refleje exactamente al usuario que ejecutó la acción. Respeta al 100% los permisos del usuario en M365.</td>
+                <td>Mayor complejidad de configuración en Microsoft Entra ID. Requiere registrar tanto la API como la App cliente con consentimiento consentido.</td>
+              </tr>
+              <tr>
+                <td><strong>Modelo 2: Identidad de Aplicación (Client Credentials / Managed Identity)</strong></td>
+                <td>El backend se autentica contra Graph API con su propio secreto o Managed Identity usando el permiso acotado <code>Sites.Selected</code>.</td>
+                <td>Arquitectura más robusta y desacoplada. Los empleados no necesitan permisos directos sobre la lista de SharePoint, previniendo accesos accidentales vía Excel/Web.</td>
+                <td><strong>Aprobación de TI indispensable:</strong> Debe limitarse el acceso exclusivamente al sitio de SharePoint del proceso mediante <code>Sites.Selected</code> para que el backend no sea una puerta abierta al tenant general.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 6: COMPARATIVA DE HOSTING: RENDER VS AZURE -->
+      <section class="doc-section" id="comparativa-hosting">
+        <div class="section-header">
+          <span class="section-tag">Infraestructura y Nube</span>
+          <h2 class="section-title">Evaluación de Despliegue: Render vs. Microsoft Azure</h2>
+          <p class="section-subtitle">Análisis riguroso de seguridad, costos, administración y viabilidad de aprobación por el área de TI</p>
+        </div>
+
+        <div class="tab-container">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="tab-azure">Microsoft Azure (Recomendado Empresa)</button>
+            <button class="tab-btn" data-tab="tab-render">Render Cloud Platform</button>
+          </div>
+
+          <div class="tab-pane active" id="tab-azure">
+            <h3 class="content-heading">Servicios de Microsoft Azure en Evaluación</h3>
+            <p class="paragraph">
+              Para una organización como Ajover Darnel que ya opera su ecosistema corporativo en Microsoft 365, SharePoint y Entra ID, Microsoft Azure ofrece una integración nativa y alineada con las políticas corporativas:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+              <li><strong>Azure App Service (Linux) o Azure Container Apps:</strong> Permite desplegar el contenedor Docker de Spring Boot con escalado automático, soporte oficial de Java 17/21 y health checks nativos.</li>
+              <li><strong>Azure Managed Identity (Identidad Administrada):</strong> Elimina la necesidad de almacenar secretos, contraseñas o llaves de API en archivos de configuración. La instancia se autentica de forma transparente contra Entra ID.</li>
+              <li><strong>Azure Key Vault:</strong> Central de almacenamiento cifrado (FIPS 140-2) para cualquier secreto o certificado que el backend requiera.</li>
+              <li><strong>Azure Monitor &amp; Application Insights:</strong> Telemetría en tiempo real, latencias de endpoints REST, rastreo de excepciones y auditoría de ciberseguridad integrada con Microsoft Defender for Cloud.</li>
+              <li><strong>Aprobación de TI:</strong> <span class="status-pill confirmed">Alta Viabilidad</span> No requiere incorporar un nuevo proveedor externo ni gestionar facturaciones separadas. Se incluye en el contrato de suscripción Enterprise / CSP existente.</li>
+            </ul>
+          </div>
+
+          <div class="tab-pane" id="tab-render">
+            <h3 class="content-heading">Análisis del Despliegue en Render</h3>
+            <p class="paragraph">
+              Render es una plataforma como servicio (PaaS) moderna y eficiente para startups y desarrollo ágil. A continuación se detallan sus condiciones operativas:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+              <li><strong>Configuración Docker:</strong> Requiere un <code>Dockerfile</code> multi-stage estándar con OpenJDK 17 Eclipse Temurin.</li>
+              <li><strong>Limitaciones del Plan Gratuito:</strong> <strong>Inviable para producción empresarial.</strong> La instancia se "duerme" tras 15 minutos de inactividad, tardando más de 50 segundos en responder (cold start), lo cual arruinaría la experiencia en las plantas de Ajover Darnel.</li>
+              <li><strong>Instancia Requerida:</strong> Para producción con Spring Boot 3 se requiere mínimo el plan <em>Standard</em> (2 GB RAM, 1 CPU) con un costo de $25 USD/mes para garantizar tiempos de respuesta estables y sin reinicios por OutOfMemory.</li>
+              <li><strong>Veredicto de Seguridad y TI:</strong> <span class="status-pill ti-pending">Riesgo de Rechazo por TI</span> El departamento de TI generalmente veta el envío de tokens corporativos o procesamiento de datos internos a través de un tercero fuera del perímetro de confianza de Microsoft sin acuerdos formales de BAA o auditoría SOC2 corporativa aprobada.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Criterio de Evaluación</th>
+                <th>Render Cloud</th>
+                <th>Microsoft Azure (Container Apps / App Service)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Alineación con el Ecosistema</strong></td>
+                <td>Plataforma aislada de terceros. Requiere crear y gestionar credenciales externas.</td>
+                <td>Nativa con Microsoft 365, Entra ID, SharePoint y Power Platform.</td>
+              </tr>
+              <tr>
+                <td><strong>Seguridad de Credenciales</strong></td>
+                <td>Variables de entorno estáticas con Secret Keys de Entra ID.</td>
+                <td>Azure Managed Identity (Cero secretos en código) + Azure Key Vault.</td>
+              </tr>
+              <tr>
+                <td><strong>Latencia hacia SharePoint</strong></td>
+                <td>Rutas a través de internet público hacia los endpoints de Graph.</td>
+                <td>Tráfico optimizado por la red troncal (backbone) de Microsoft.</td>
+              </tr>
+              <tr>
+                <td><strong>Facilidad de Aprobación por TI</strong></td>
+                <td>Baja (Requiere auditoría de compliance y nuevo vendor).</td>
+                <td>Alta (Proveedor homologado y gobernanza bajo el mismo tenant).</td>
+              </tr>
+              <tr>
+                <td><strong>Costo Mensual Estimado</strong></td>
+                <td>$25 USD/mes (Plan Standard).</td>
+                <td>~$45 - $58 USD/mes (App Service B2 o Container Apps dedicado).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 7: POWER AUTOMATE, GMAIL Y MICROSOFT TEAMS -->
+      <section class="doc-section" id="power-automate">
+        <div class="section-header">
+          <span class="section-tag">Integración de Notificaciones</span>
+          <h2 class="section-title">Estrategia de Integración con Power Automate, Gmail y Teams</h2>
+          <p class="section-subtitle">Cómo conservar las automatizaciones actuales sin reconstruirlas desde cero y adaptarlas a la nueva aplicación</p>
+        </div>
+
+        <h3 class="content-heading">Reutilización de Flujos Actuales: El Reto del Trigger</h3>
+        <p class="paragraph">
+          Como se detectó en la auditoría, los flujos clave (ej. <em>Copia de: Enviar Correos Creación de propuesta Cambio</em> y <em>Copia de: Momento Cerrado</em>) inician con el trigger manual <code>Request (PowerAppV2)</code>. <strong>Este trigger está diseñado para responder a llamadas de la función <code>.Run()</code> de Power Apps y no puede invocarse directamente desde Flutter por protocolo estándar.</strong>
+        </p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <h4 class="card-title">Solución A: Desencadenador por Evento de SharePoint (Recomendada)</h4>
+            <p class="card-text">
+              Modificar el trigger del flujo para que se active automáticamente con:
+              <br><code>When an item is created or modified</code> en la <em>Lista de Procesos Control de Cambios vrs 1.5</em>.
+              <br><strong>Ventaja:</strong> Funciona idéntico si el cambio se hace desde Flutter, desde Spring Boot o incluso desde SharePoint. Cero acoplamiento con la interfaz de usuario.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4 class="card-title">Solución B: Desencadenador HTTP Request (Webhook Seguro)</h4>
+            <p class="card-text">
+              Cambiar el trigger a <code>When a HTTP request is received</code>.
+              <br><strong>Ventaja:</strong> Permite que el backend Spring Boot o Flutter envíen un payload JSON para disparar el flujo al instante.
+              <br><strong>Requisito TI:</strong> Este conector requiere validación de licenciamiento de Power Automate y seguridad de la URL de callback.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="content-heading">Prevención de Notificaciones Duplicadas y Bucles</h3>
+        <p class="paragraph">
+          Al utilizar triggers automáticos en SharePoint (<em>When an item is modified</em>), existe el riesgo de que el flujo se ejecute múltiples veces al guardar adjuntos o actualizar campos. Para evitar correos duplicados y sobrecostos de ejecuciones, se deben implementar las siguientes directivas oficiales:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+          <li><strong>Condiciones de Activación (Trigger Conditions):</strong> Configurar en el flujo expresiones de filtro como: <code>@equals(triggerOutputs()?['body/MomentodelCambio/Value'], 'Planeación')</code> para que solo se dispare cuando el estado cambie específicamente.</li>
+          <li><strong>Bandera de Control (Control Flag):</strong> Añadir una columna booleana en SharePoint como <code>CorreoEnviado = Sí/No</code> para asegurar que la notificación se procese exactamente una vez (idempotencia).</li>
+          <li><strong>Conectores Gmail vs. Outlook:</strong> Si se requiere Gmail para ciertas cuentas contratistas o externas, validar que la cuenta de conexión sea compartida institucional (Service Account) y no personal, cumpliendo con las políticas DLP de Power Platform del tenant.</li>
+        </ul>
+      </section>
+
+      <!-- SECCIÓN 8: SEGURIDAD INFORMÁTICA Y APROBACIÓN DE TI -->
+      <section class="doc-section" id="seguridad-ti">
+        <div class="section-header">
+          <span class="section-tag">Ciberseguridad y Gobernanza</span>
+          <h2 class="section-title">Seguridad Informática y Requisitos para el Área de TI</h2>
+          <p class="section-subtitle">Arquitectura de defensa en profundidad, privilegios mínimos y matriz de responsabilidades</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <h4 class="card-title">Identidad y Acceso (Entra ID)</h4>
+            <p class="card-text">Autenticación basada estrictamente en Microsoft Entra ID. Compatibilidad total con políticas de <strong>Autenticación Multifactor (MFA)</strong> y <strong>Acceso Condicional</strong> para dispositivos administrados.</p>
+          </div>
+          <div class="info-card">
+            <h4 class="card-title">Permisos Acotados (Sites.Selected)</h4>
+            <p class="card-text">No se solicitarán permisos globales (como <code>Sites.FullControl.All</code>). Se empleará <code>Sites.Selected</code>, otorgando acceso de lectura/escritura únicamente a la colección de sitios de Control de Cambios.</p>
+          </div>
+          <div class="info-card">
+            <h4 class="card-title">Cero Secretos en el Cliente</h4>
+            <p class="card-text">El binario de Flutter para Windows se distribuye como un cliente público (Public Client Application), sin secretos embebidos ni contraseñas. Los tokens se cifran localmente con Windows DPAPI.</p>
+          </div>
+          <div class="info-card">
+            <h4 class="card-title">Políticas de Prevención DLP</h4>
+            <p class="card-text">Todas las operaciones de datos se mantienen dentro del tenant de Microsoft 365, respetando las políticas de Data Loss Prevention establecidas por el equipo de seguridad.</p>
+          </div>
+        </div>
+
+        <h3 class="content-heading">Matriz Formal de Responsabilidades Técnicas</h3>
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Elemento del Sistema</th>
+                <th>Responsable Principal</th>
+                <th>Acción / Entregable Clave Requerido</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cuentas Corporativas e Identidad</strong></td>
+                <td>Administrador de Microsoft 365</td>
+                <td>Gestión de usuarios <code>@ajover.com</code> y directivas de Acceso Condicional.</td>
+              </tr>
+              <tr>
+                <td><strong>Registro de Aplicación en Entra ID</strong></td>
+                <td>Administrador de TI / Seguridad</td>
+                <td>Crear el App Registration, definir Redirect URIs y otorgar Consentimiento de Administrador.</td>
+              </tr>
+              <tr>
+                <td><strong>Permisos de Microsoft Graph</strong></td>
+                <td>Administrador de Seguridad TI</td>
+                <td>Aprobación de <code>Sites.Selected</code> o <code>User.Read</code> delegados.</td>
+              </tr>
+              <tr>
+                <td><strong>Listas y Datos en SharePoint</strong></td>
+                <td>Administrador de SharePoint / Propietario</td>
+                <td>Mantenimiento de permisos a nivel de lista y validación de esquemas.</td>
+              </tr>
+              <tr>
+                <td><strong>Flujos de Power Automate</strong></td>
+                <td>Líder de Desarrollo / Power Platform</td>
+                <td>Ajuste de desencadenadores de los 4 flujos existentes y control anti-duplicados.</td>
+              </tr>
+              <tr>
+                <td><strong>Backend Spring Boot (Si aplica)</strong></td>
+                <td>Equipo de Desarrollo / Infraestructura</td>
+                <td>Mantenimiento del código Java, APIs, monitoreo y contenedor en Azure.</td>
+              </tr>
+              <tr>
+                <td><strong>Distribución del Instalador Flutter</strong></td>
+                <td>Soporte Técnico / TI</td>
+                <td>Empaquetado MSI/MSIX y despliegue a través de Microsoft Intune o GPO.</td>
+              </tr>
+              <tr>
+                <td><strong>Auditoría y Ciberseguridad</strong></td>
+                <td>Seguridad Informática (CISO)</td>
+                <td>Revisión de logs, escaneo de vulnerabilidades y verificación de cifrado.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 9: HERRAMIENTAS Y ENTORNOS -->
+      <section class="doc-section" id="requisitos-entornos">
+        <div class="section-header">
+          <span class="section-tag">Requisitos Operativos</span>
+          <h2 class="section-title">Programas y Herramientas Requeridas</h2>
+          <p class="section-subtitle">Diferenciación estricta entre la estación de desarrollo y los computadores de los empleados</p>
+        </div>
+
+        <div class="tab-container">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="tab-empleado">Computador del Empleado (Producción)</button>
+            <button class="tab-btn" data-tab="tab-dev-flutter">Estación de Desarrollo Flutter</button>
+            <button class="tab-btn" data-tab="tab-dev-spring">Estación de Desarrollo Spring Boot</button>
+          </div>
+
+          <div class="tab-pane active" id="tab-empleado">
+            <h3 class="content-heading">Requisitos Mínimos para los Colaboradores de Ajover Darnel</h3>
+            <div class="alert-box alert-success">
+              <strong>Importante para TI:</strong> El usuario final <strong>NO requiere</strong> instalar Flutter SDK, Java JDK, Android Studio ni herramientas de programación. Recibe un paquete instalador compilado listo para usar.
+            </div>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+              <li><strong>Sistema Operativo:</strong> Windows 10 (versión 1809 o superior) o Windows 11 de 64 bits.</li>
+              <li><strong>Dependencia del Sistema:</strong> Paquete redistribuible <em>Visual C++ Redistributable 2015-2022 (x64)</em> (comúnmente ya presente en computadores corporativos; se incluye en el instalador si hiciera falta).</li>
+              <li><strong>Conectividad:</strong> Salida por puerto 443 (HTTPS) hacia los servicios de Microsoft (<code>graph.microsoft.com</code>, <code>login.microsoftonline.com</code>).</li>
+              <li><strong>Mecanismo de Despliegue Empresarial:</strong>
+                <ul style="margin-top: 0.4rem;">
+                  <li>Empaquetado en formato <strong>MSI</strong> mediante <em>Inno Setup</em> o <em>WiX Toolset</em>.</li>
+                  <li>Distribución silenciosa centralizada mediante <strong>Microsoft Intune</strong> o Políticas de Grupo (GPO).</li>
+                  <li>Firma digital del ejecutable con el Certificado de Código Empresarial para evitar advertencias de Windows SmartScreen.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tab-pane" id="tab-dev-flutter">
+            <h3 class="content-heading">Entorno de Construcción Flutter para Windows Desktop</h3>
+            <div class="table-responsive">
+              <table class="corporate-table">
+                <thead>
+                  <tr>
+                    <th>Componente</th>
+                    <th>Versión Mínima</th>
+                    <th>Propósito y Observaciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Flutter SDK &amp; Dart SDK</strong></td>
+                    <td>Flutter 3.24+ / Dart 3.5+</td>
+                    <td>Framework UI y compilador a código máquina x64 para Windows.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Visual Studio 2022 Community/Professional</strong></td>
+                    <td>VS 2022 v17.0+</td>
+                    <td>Obligatorio instalar la carga de trabajo <em>"Desarrollo para el escritorio con C++"</em> (Desktop development with C++) y Windows 10/11 SDK.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Visual Studio Code / Android Studio</strong></td>
+                    <td>Última versión estable</td>
+                    <td>Editor principal con extensiones oficiales de Flutter y Dart.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Git para Windows</strong></td>
+                    <td>2.40+</td>
+                    <td>Control de versiones e integración continua.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4 class="content-subheading">Comandos Esenciales de Verificación</h4>
+            <div class="code-title">
+              <span>Terminal PowerShell (Desarrollo)</span>
+              <span>Comandos CLI Flutter</span>
+            </div>
+            <pre class="code-block">
+# 1. Comprobar que todas las dependencias de C++ y Windows SDK estén correctas
+flutter doctor -v
+
+# 2. Verificar que el dispositivo Windows Desktop esté reconocido
+flutter devices
+
+# 3. Ejecutar la aplicación en modo depuración sobre Windows
+flutter run -d windows
+
+# 4. Compilar el binario optimizado para producción (.exe y dlls asociadas)
+flutter build windows --release
+            </pre>
+          </div>
+
+          <div class="tab-pane" id="tab-dev-spring">
+            <h3 class="content-heading">Entorno de Construcción Spring Boot 3</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+              <li><strong>Java Development Kit (JDK):</strong> Eclipse Temurin OpenJDK 17 LTS o 21 LTS.</li>
+              <li><strong>Gestor de Dependencias:</strong> Apache Maven 3.9+ o Gradle 8+.</li>
+              <li><strong>IDE Recomendado:</strong> IntelliJ IDEA Community/Ultimate o VS Code con Extension Pack for Java.</li>
+              <li><strong>Docker Desktop:</strong> Para compilación de imágenes de contenedor y pruebas de despliegue local.</li>
+              <li><strong>Herramienta de Diagnóstico API:</strong> Postman o Thunder Client para testing de endpoints REST y tokens JWT.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 10: COSTOS Y VIABILIDAD ECONÓMICA -->
+      <section class="doc-section" id="costos-viabilidad">
+        <div class="section-header">
+          <span class="section-tag">Análisis Financiero y TCO</span>
+          <h2 class="section-title">Costos y Viabilidad Económica Comparada</h2>
+          <p class="section-subtitle">Estimaciones transparentes en USD y COP (Tasa de referencia: $4,150 COP por USD - Octubre 2026)</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Concepto de Costo (Desembolso Real)</th>
+                <th>Opción A: Power Apps Actual</th>
+                <th>Opción B: Flutter Desktop + SharePoint (Ustedes Desarrollan)</th>
+                <th>Opción C: Flutter + Spring Boot (Render)</th>
+                <th>Opción D: Flutter + Spring Boot (Azure)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Licenciamiento de Usuarios</strong></td>
+                <td>$0 (Incluido en M365 actual)</td>
+                <td><strong>$0 (Incluido en M365 actual)</strong></td>
+                <td>$0 (Incluido en M365 actual)</td>
+                <td>$0 (Incluido en M365 actual)</td>
+              </tr>
+              <tr>
+                <td><strong>Pago de Servidores / Hosting a Terceros</strong></td>
+                <td>$0 (En la nube de Microsoft 365)</td>
+                <td><strong>$0 (Directo a SharePoint, sin servidor extra)</strong></td>
+                <td>~$25 USD/mes ($103,750 COP/mes a Render)</td>
+                <td>~$45 - $58 USD/mes ($186,750 - $240,700 COP/mes a Azure)</td>
+              </tr>
+              <tr>
+                <td><strong>Herramientas y Framework (Flutter / Dart / Graph)</strong></td>
+                <td>$0 (Licencia M365 existente)</td>
+                <td><strong>$0 (Código Abierto / 100% Gratuito y Libre)</strong></td>
+                <td>$0 (Spring Boot y Flutter son Open Source)</td>
+                <td>$0 (Spring Boot y Flutter son Open Source)</td>
+              </tr>
+              <tr>
+                <td><strong>Desembolso Inicial en Dinero (Desarrollo Interno)</strong></td>
+                <td><strong>$0 COP / $0 USD</strong></td>
+                <td><strong>$0 COP / $0 USD (Desarrollado por el equipo interno)</strong></td>
+                <td><strong>$0 COP / $0 USD (Desarrollado por el equipo interno)</strong></td>
+                <td><strong>$0 COP / $0 USD (Desarrollado por el equipo interno)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Costo Operativo Anual a Terceros</strong></td>
+                <td>$0 COP / $0 USD</td>
+                <td><strong>$0 COP / $0 USD</strong></td>
+                <td>~$300 USD/año ($1,245,000 COP/año)</td>
+                <td>~$660 USD/año ($2,739,000 COP/año)</td>
+              </tr>
+              <tr>
+                <td><strong>TOTAL A PAGAR A TERCEROS (TCO 3 AÑOS)</strong></td>
+                <td><strong>$0 COP</strong></td>
+                <td><strong>⭐ $0 COP / $0 USD (COSTO CERO REAL)</strong></td>
+                <td><strong>~$900 USD (~$3,735,000 COP)</strong></td>
+                <td><strong>~$1,980 USD (~$8,217,000 COP)</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="paragraph" style="font-size: 0.85rem; color: var(--text-muted);">
+          * Nota: Si la empresa mantuviera Power Apps pero decidiera migrar a Dataverse o requerir conectores premium a futuro, Power Apps demandaría $20 USD/usuario/mes ($240 USD/año/usuario). Para 25 usuarios, esto equivaldría a $6,000 USD anuales recurrentes, punto en el cual Flutter Desktop ofrece un ahorro masivo a largo plazo.
+        </p>
+
+        <!-- Calculadora Interactiva de Costos -->
+        <div class="calculator-box">
+          <h3 class="content-heading" style="margin-top: 0;">🧮 Calculadora Interactiva de Costos y TCO</h3>
+          <p class="paragraph">Ajuste las variables para proyectar los costos según los escenarios de la empresa:</p>
+
+          <div class="calc-grid">
+            <div class="calc-input-group">
+              <label for="calc-arch">Seleccionar Alternativa:</label>
+              <select id="calc-arch">
+                <option value="flutter-sharepoint" selected>Opción B: Flutter Desktop + SharePoint (Recomendada)</option>
+                <option value="flutter-spring-azure">Opción D: Flutter + Spring Boot en Azure</option>
+                <option value="flutter-spring-render">Opción C: Flutter + Spring Boot en Render</option>
+                <option value="powerapps">Opción A: Continuar en Power Apps</option>
+              </select>
+            </div>
+            <div class="calc-input-group">
+              <label for="calc-users">Usuarios Activos Estimados:</label>
+              <input type="number" id="calc-users" value="25" min="1" max="500">
+            </div>
+            <div class="calc-input-group">
+              <label for="calc-years">Horizonte de Evaluación (Años):</label>
+              <input type="number" id="calc-years" value="3" min="1" max="10">
+            </div>
+            <div class="calc-input-group">
+              <label for="calc-rate">Tasa de Cambio (COP por USD):</label>
+              <input type="number" id="calc-rate" value="4150" min="1000" step="50">
+            </div>
+          </div>
+
+          <div class="calc-summary-cards">
+            <div class="calc-result-card">
+              <div class="calc-result-title">Inversión Inicial Estimada</div>
+              <div class="calc-result-value" id="calc-initial-usd">$3,800 USD</div>
+              <div class="calc-result-sub" id="calc-initial-cop">$15,770,000 COP</div>
+            </div>
+            <div class="calc-result-card">
+              <div class="calc-result-title">Costo Recurrente Mensual</div>
+              <div class="calc-result-value" id="calc-monthly-usd">$0 USD/mes</div>
+              <div class="calc-result-sub" id="calc-monthly-cop">$0 COP/mes</div>
+            </div>
+            <div class="calc-result-card">
+              <div class="calc-result-title">TCO Proyectado (Costo Total)</div>
+              <div class="calc-result-value" id="calc-tco-usd">$3,800 USD</div>
+              <div class="calc-result-sub" id="calc-tco-cop">$15,770,000 COP</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 11: MATRIZ COMPARATIVA TÉCNICA -->
+      <section class="doc-section" id="matriz-comparativa">
+        <div class="section-header">
+          <span class="section-tag">Evaluación Multicriterio</span>
+          <h2 class="section-title">Matriz Comparativa Técnica de las Alternativas</h2>
+          <p class="section-subtitle">Puntuaciones ponderadas del 1 al 10 con justificación técnica rigurosa</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Criterio Técnico y de Negocio</th>
+                <th>A. Power Apps Actual</th>
+                <th>B. Flutter + SharePoint</th>
+                <th>C. Flutter + Spring (Render)</th>
+                <th>D. Flutter + Spring (Azure)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Rendimiento y Fluidez en Windows</strong></td>
+                <td>6 / 10 (Latencia en navegador)</td>
+                <td><strong>9 / 10</strong> (Nativo C++ a 60 FPS)</td>
+                <td><strong>9 / 10</strong> (Nativo C++ a 60 FPS)</td>
+                <td><strong>9 / 10</strong> (Nativo C++ a 60 FPS)</td>
+              </tr>
+              <tr>
+                <td><strong>Experiencia de Usuario (UX/UI)</strong></td>
+                <td>7 / 10 (Restricciones canvas)</td>
+                <td><strong>9.5 / 10</strong> (Control total de píxel)</td>
+                <td><strong>9.5 / 10</strong> (Control total de píxel)</td>
+                <td><strong>9.5 / 10</strong> (Control total de píxel)</td>
+              </tr>
+              <tr>
+                <td><strong>Seguridad y Autenticación</strong></td>
+                <td>9 / 10 (Nativa en M365)</td>
+                <td>8.5 / 10 (MSAL + PKCE seguro)</td>
+                <td>7 / 10 (Secretos fuera de M365)</td>
+                <td><strong>9.5 / 10</strong> (Entra ID + Managed Identity)</td>
+              </tr>
+              <tr>
+                <td><strong>Costos de Infraestructura Recurrente</strong></td>
+                <td><strong>10 / 10</strong> ($0 adicional)</td>
+                <td><strong>10 / 10</strong> ($0 adicional)</td>
+                <td>8 / 10 (~$25 USD/mes)</td>
+                <td>7.5 / 10 (~$55 USD/mes)</td>
+              </tr>
+              <tr>
+                <td><strong>Viabilidad de Aprobación por TI</strong></td>
+                <td><strong>10 / 10</strong> (Ya aprobado)</td>
+                <td><strong>9 / 10</strong> (Usa M365 y Graph)</td>
+                <td>5 / 10 (Objeción vendor externo)</td>
+                <td>8.5 / 10 (Homologado en Azure)</td>
+              </tr>
+              <tr>
+                <td><strong>Mantenibilidad de Código</strong></td>
+                <td>5 / 10 (Fórmulas complejas en YAML)</td>
+                <td>8 / 10 (Dart tipado y modular)</td>
+                <td>8.5 / 10 (Separación 3 capas)</td>
+                <td><strong>9 / 10</strong> (Separación 3 capas + CI/CD)</td>
+              </tr>
+              <tr>
+                <td><strong>Facilidad de Distribución</strong></td>
+                <td><strong>10 / 10</strong> (Solo enlace web)</td>
+                <td>7.5 / 10 (Requiere MSI e Intune)</td>
+                <td>7.5 / 10 (Requiere MSI e Intune)</td>
+                <td>7.5 / 10 (Requiere MSI e Intune)</td>
+              </tr>
+              <tr>
+                <td><strong>PROMEDIO PONDERADO</strong></td>
+                <td><strong>8.1 / 10</strong></td>
+                <td><strong>8.8 / 10</strong></td>
+                <td><strong>7.8 / 10</strong></td>
+                <td><strong>8.6 / 10</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 12: ARQUITECTURA RECOMENDADA -->
+      <section class="doc-section" id="arquitectura-recomendada">
+        <div class="section-header">
+          <span class="section-tag">Decisión Estratégica</span>
+          <h2 class="section-title">Propuesta de Arquitectura Recomendada para Ajover Darnel</h2>
+          <p class="section-subtitle">Estrategia evolutiva en dos etapas: Eficiencia de costos inmediata con escalabilidad garantizada</p>
+        </div>
+
+        <div class="alert-box alert-success">
+          <strong>Recomendación Principal:</strong> Implementar la <strong>Arquitectura A (Flutter Desktop + SharePoint + Power Automate con triggers por evento)</strong> como fase inicial. Esta alternativa ofrece la mayor relación costo-beneficio, eliminando costos recurrentes de servidores, conservando la base de datos de SharePoint intacta y requiriendo una menor fricción de aprobación ante el departamento de TI.
+        </div>
+
+        <h3 class="content-heading">Por qué esta es la mejor decisión para la empresa:</h3>
+        <ol style="margin-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+          <li><strong>Cero Gasto de Servidores:</strong> No se requiere contratar instancias en la nube (evitando gastos innecesarios en Render o Azure para un volumen de 25-50 cambios mensuales).</li>
+          <li><strong>Aprovechamiento Integral de Microsoft 365:</strong> Los datos residen en las listas ya existentes (<em>Lista de Procesos Control de Cambios vrs 1.5</em> y <em>Definiciones Riesgo | Análisis 4 que</em>).</li>
+          <li><strong>Continuidad de Flujos:</strong> Los flujos de Power Automate continúan operando para notificar por correo institucional y Teams al cambiar el estado del ítem en SharePoint.</li>
+          <li><strong>Camino de Escalabilidad (Arquitectura B como Fase Futura):</strong> Si en el futuro el volumen de transacciones se multiplica o la empresa decide implementar lógica de integración con SAP u otro ERP, el frontend Flutter ya estará construido y solo requerirá redirigir sus endpoints hacia un backend Spring Boot alojado en <strong>Microsoft Azure</strong> (descartando Render por razones de gobernanza).</li>
+        </ol>
+      </section>
+
+      <!-- SECCIÓN 13: PLAN DE IMPLEMENTACIÓN POR FASES -->
+      <section class="doc-section" id="plan-implementacion">
+        <div class="section-header">
+          <span class="section-tag">Hoja de Ruta</span>
+          <h2 class="section-title">Plan de Implementación en 10 Fases</h2>
+          <p class="section-subtitle">Estimaciones realistas orientativas sujetas a las ventanas de aprobación del departamento de TI</p>
+        </div>
+
+        <div class="diagram-interactive-canvas">
+          <div class="flow-step">
+            <div class="flow-step-num">1</div>
+            <div class="flow-step-content">
+              <h4>Fase 1: Auditoría Técnica y Levantamiento de Esquemas (Completada)</h4>
+              <p>Revisión de pantallas YAML, modelos de datos en SharePoint y triggers de Power Automate. <em>Entregable: Informe técnico y base de datos auditada.</em></p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">2</div>
+            <div class="flow-step-content">
+              <h4>Fase 2: Presentación a Jefatura y Validación con TI (1 - 2 semanas)</h4>
+              <p>Reunión ejecutiva para exponer la propuesta, resolver objeciones y definir la arquitectura de conexión. <em>Criterio de aprobación: Visto bueno de TI para registrar la App.</em></p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">3</div>
+            <div class="flow-step-content">
+              <h4>Fase 3: Registro en Entra ID y Definición de Permisos (1 semana)</h4>
+              <p>Creación del App Registration en el portal de Azure, configuración de Redirect URIs con PKCE y asignación de permisos <code>Sites.Selected</code>. <em>Responsable: Administrador TI.</em></p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">4</div>
+            <div class="flow-step-content">
+              <h4>Fase 4: Prototipo Funcional de Flutter Desktop (2 - 3 semanas)</h4>
+              <p>Construcción de la UI corporativa: Login con cuenta Microsoft, Ficha del Cambio, Análisis 4 Qué y bandeja de historial con filtros reactivos.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">5</div>
+            <div class="flow-step-content">
+              <h4>Fase 5: Conexión Controlada con SharePoint Online (2 semanas)</h4>
+              <p>Implementación de llamadas REST a Microsoft Graph API para creación y edición de registros en las listas principal e hija.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">6</div>
+            <div class="flow-step-content">
+              <h4>Fase 6: Adaptación de Flujos de Power Automate (1 semana)</h4>
+              <p>Modificación de desencadenadores de los flujos de correo institucional para activarse por evento de SharePoint con condiciones de disparo anti-duplicados.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">7</div>
+            <div class="flow-step-content">
+              <h4>Fase 7: Pruebas Integrales y de Ciberseguridad (1 - 2 semanas)</h4>
+              <p>Verificación de concurrencia, permisos de lectura estricta para aprobadores, cifrado de tokens en disco y rendimiento en red corporativa.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">8</div>
+            <div class="flow-step-content">
+              <h4>Fase 8: Prueba Piloto con Grupo Focal de Usuarios (2 semanas)</h4>
+              <p>Despliegue a 5 proponentes y 3 aprobadores (Ambiente y Calidad) para radicar propuestas reales en paralelo con la PowerApp.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">9</div>
+            <div class="flow-step-content">
+              <h4>Fase 9: Empaquetado y Distribución Empresarial (1 semana)</h4>
+              <p>Creación del instalador MSI firmado y carga al catálogo de Microsoft Intune o distribución por directiva de TI.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-step-num">10</div>
+            <div class="flow-step-content">
+              <h4>Fase 10: Salida a Producción y Monitoreo (Continuo)</h4>
+              <p>Retiro ordenado de la PowerApp antigua, soporte técnico continuo y seguimiento de auditoría en auditorías de calidad.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 14: PREPARACIÓN PARA LA REUNIÓN EJECUTIVA -->
+      <section class="doc-section" id="preparacion-reunion">
+        <div class="section-header">
+          <span class="section-tag">Estrategia de Comunicación</span>
+          <h2 class="section-title">Preparación para la Reunión con la Jefa y TI</h2>
+          <p class="section-subtitle">Argumentos de valor, respuestas a objeciones y discurso ejecutivo estructurado</p>
+        </div>
+
+        <h3 class="content-heading">A. Discurso Ejecutivo de Presentación (2 - 3 Minutos)</h3>
+        <div class="alert-box alert-info" style="font-size: 0.95rem; font-style: italic; line-height: 1.7;">
+          "Buenos días. El objetivo de esta propuesta no es desechar ni cambiar lo que ya funciona bien en la empresa. El procedimiento FADM36-1, las listas de SharePoint y los flujos de Power Automate han demostrado su valor en ordenar el control de cambios. Sin embargo, en el día a día, los colaboradores en planta y oficinas experimentan tiempos de carga y limitaciones de interfaz inherentes a una aplicación web en navegador.<br><br>
+          Nuestra propuesta plantea modernizar la interfaz hacia una aplicación de escritorio nativa para Windows desarrollada en Flutter. Esto nos entrega una herramienta rápida, profesional y con la identidad de Ajover Darnel, manteniendo al 100% la infraestructura de datos en SharePoint y las notificaciones existentes. Demostramos además que con la Arquitectura A el costo adicional de servidores es cero, utilizando los permisos delegados de Microsoft 365. Con esto elevamos la calidad percibida del sistema, eliminamos la fricción de usuario y garantizamos total tranquilidad de seguridad para el departamento de TI."
+        </div>
+
+        <h3 class="content-heading">B. Banco de Respuestas a Posibles Objeciones</h3>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>¿Por qué no seguir utilizando Power Apps si ya está construida?</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>Power Apps resolvió la primera fase del proyecto con éxito. Sin embargo, su código YAML actual supera los 800 KB con lógicas sumamente complejas que dificultan el mantenimiento. Además, Flutter Desktop ofrece apertura instantánea en Windows, operación a 60 FPS sin recargar navegador y una experiencia de usuario personalizada sin el consumo de memoria del navegador web.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>¿No resultará mucho más costoso desarrollar y mantener Flutter?</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>No. En la Arquitectura A recomendada, el costo recurrente de infraestructura es de exactamente $0 USD mensuales, pues se conecta directamente a SharePoint Online con las cuentas de Microsoft 365 ya contratadas. Además, evita el riesgo financiero de requerir licencias Power Apps Premium ($20 USD/usuario/mes) si el proceso demandara capacidades avanzadas.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>¿Qué ocurre si TI no autoriza una plataforma externa como Render?</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>Esa fue precisamente una de las razones para recomendar la Arquitectura A: no requiere Render ni ningún servidor externo. Y en caso de que a futuro se requiera un backend en Spring Boot, la propuesta establece que se alojará en Microsoft Azure bajo el contrato corporativo existente, garantizando total cumplimiento de seguridad.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>¿Se perderán o tendrán que rehacerse los flujos de correo existentes?</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>En absoluto. Las plantillas HTML de correo (azul institucional) y la lógica de envío se conservan intactas. El único cambio es técnico y toma menos de una hora: migrar el disparador de <em>PowerAppV2</em> a <em>When an item is created/modified</em> en SharePoint, haciendo que el flujo se ejecute automáticamente sin importar desde dónde se guardó la información.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checklist Interactivo para la Reunión -->
+        <h3 class="content-heading" style="margin-top: 2rem;">📋 Checklist de Preparación para la Sesión</h3>
+        <div class="checklist-container">
+          <label class="checklist-item">
+            <input type="checkbox">
+            <span>Tener abierto el presente informe interactivo en modo presentación listo para proyectar.</span>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox">
+            <span>Tener a mano el informe FADM36-1 oficial y capturas de la PowerApp actual para contrastar tiempos de respuesta.</span>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox">
+            <span>Enfatizar ante la jefa el beneficio de experiencia de usuario y cero sobrecosto en licencias.</span>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox">
+            <span>Enfatizar ante TI el cumplimiento de Entra ID, PKCE y permisos acotados con <code>Sites.Selected</code>.</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 15: PREGUNTAS TÉCNICAS PARA TI -->
+      <section class="doc-section" id="preguntas-ti">
+        <div class="section-header">
+          <span class="section-tag">Cuestionario Formal</span>
+          <h2 class="section-title">Preguntas Organizadas para el Departamento de TI</h2>
+          <p class="section-subtitle">Aspectos técnicos que deben consultarse y acordarse con los responsables de infraestructura y ciberseguridad</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Área Temática</th>
+                <th>Pregunta Puntual para el Responsable de TI</th>
+                <th>Propósito / Impacto Técnico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Microsoft Entra ID</strong></td>
+                <td>¿Cuál es el procedimiento interno para solicitar la creación de un <em>App Registration</em> para una aplicación de escritorio Windows pública?</td>
+                <td>Habilita el Client ID necesario para el flujo de login corporativo con PKCE sin secretos embebidos.</td>
+              </tr>
+              <tr>
+                <td><strong>Permisos Microsoft Graph</strong></td>
+                <td>¿Es factible autorizar el permiso <code>Sites.Selected</code> para conceder acceso de lectura/escritura únicamente a la colección de sitios del proceso de Control de Cambios?</td>
+                <td>Cumple con el principio de mínimo privilegio exigido por las normas de seguridad informática de la empresa.</td>
+              </tr>
+              <tr>
+                <td><strong>Políticas DLP en Power Automate</strong></td>
+                <td>¿Existe alguna restricción en las políticas de prevención de pérdida de datos (DLP) para que los flujos de SharePoint utilicen conectores de Office 365 Outlook o Teams?</td>
+                <td>Garantiza que el cambio de desencadenadores de los flujos no sea bloqueado por directivas del tenant.</td>
+              </tr>
+              <tr>
+                <td><strong>Distribución de Software</strong></td>
+                <td>¿Qué canal prefiere TI para la distribución del instalador Windows: Microsoft Intune, despliegue por GPO o instalación mediante script centralizado?</td>
+                <td>Define si se compilará un paquete MSI tradicional o un paquete empaquetado para Intune (<code>.intunewin</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>Certificado de Firma</strong></td>
+                <td>¿Dispone la compañía de un certificado digital corporativo de firma de código (Code Signing Certificate) para firmar el ejecutable de Flutter?</td>
+                <td>Evita que Windows Defender SmartScreen muestre pantallas de advertencia azul al abrir la aplicación en los PCs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 16: FUENTES OFICIALES Y DOCUMENTACIÓN -->
+      <section class="doc-section" id="fuentes-oficiales">
+        <div class="section-header">
+          <span class="section-tag">Referencias y Verificación</span>
+          <h2 class="section-title">Fuentes Técnicas Oficiales y Documentación Consultada</h2>
+          <p class="section-subtitle">Fecha de consulta: Octubre de 2026</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="corporate-table">
+            <thead>
+              <tr>
+                <th>Recurso Oficial</th>
+                <th>URL de Consulta</th>
+                <th>Estado de Verificación en la Propuesta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Microsoft Graph API - SharePoint Lists</strong></td>
+                <td><a href="https://learn.microsoft.com/en-us/graph/api/resources/listitem" target="_blank" rel="noopener">learn.microsoft.com/en-us/graph/</a></td>
+                <td><span class="status-pill confirmed">Confirmado documentalmente</span> Operaciones CRUD y filtrado OData en listas de SharePoint.</td>
+              </tr>
+              <tr>
+                <td><strong>Microsoft Entra ID - OAuth 2.0 PKCE Flow</strong></td>
+                <td><a href="https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow" target="_blank" rel="noopener">learn.microsoft.com/en-us/entra/</a></td>
+                <td><span class="status-pill confirmed">Confirmado documentalmente</span> Flujo de código de autorización para aplicaciones públicas de escritorio.</td>
+              </tr>
+              <tr>
+                <td><strong>Flutter Desktop Windows Guide</strong></td>
+                <td><a href="https://docs.flutter.dev/desktop" target="_blank" rel="noopener">docs.flutter.dev/desktop</a></td>
+                <td><span class="status-pill confirmed">Confirmado documentalmente</span> Requisitos de Visual Studio 2022 C++ y compilación release x64.</td>
+              </tr>
+              <tr>
+                <td><strong>Spring Boot 3 + Microsoft Graph SDK</strong></td>
+                <td><a href="https://github.com/microsoftgraph/msgraph-sdk-java" target="_blank" rel="noopener">github.com/microsoftgraph/msgraph-sdk-java</a></td>
+                <td><span class="status-pill confirmed">Confirmado documentalmente</span> SDK oficial v6 para Java con autenticación Azure Identity.</td>
+              </tr>
+              <tr>
+                <td><strong>Precios Oficiales de Microsoft Azure</strong></td>
+                <td><a href="https://azure.microsoft.com/pricing/" target="_blank" rel="noopener">azure.microsoft.com/pricing/</a></td>
+                <td><span class="status-pill confirmed">Tarifas Vigentes 2026</span> Costos de Azure App Service Basic B2 y Container Apps.</td>
+              </tr>
+              <tr>
+                <td><strong>Precios Oficiales de Render PaaS</strong></td>
+                <td><a href="https://render.com/pricing" target="_blank" rel="noopener">render.com/pricing</a></td>
+                <td><span class="status-pill confirmed">Tarifas Vigentes 2026</span> Planes Individual vs. Team ($25/mes por instancia Standard).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.82rem;">
+          Propuesta Tecnológica Empresarial – Sistema de Gestión Integral FADM36-1 | Ajover Darnel S.A.S. | Octubre de 2026
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
